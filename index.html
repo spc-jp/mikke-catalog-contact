@@ -167,7 +167,7 @@
 
             <form id="contactForm" class="space-y-6 bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100">
                 
-                <!-- 送信先メールアドレスを処理するバックエンド等の設定用（明示的） -->
+                <!-- 送信先メールアドレス（Cloudflare Workers側でも設定できますが、明示的に含めておくことも可能です） -->
                 <input type="hidden" name="to_email" value="spc@smileplusctg.com">
 
                 <!-- Inquiry Type -->
@@ -293,31 +293,34 @@
 
             try {
                 // ==========================================
-                // 【メール送信の連携部分】
-                // ここにご利用のフォームサービス（Formspreeなど）のURLを指定します。
-                // 例: const endpointUrl = 'https://formspree.io/f/xxxxxxx';
+                // 【Cloudflare Workers エンドポイント設定】
+                // デプロイしたWorkersのURLをここに設定してください。
+                // 例: const endpointUrl = 'https://contact-api.yourname.workers.dev/';
                 // ==========================================
-                const endpointUrl = ''; // ← 発行されたURLをここに設定してください
+                const endpointUrl = ''; 
                 
+                // フォームのデータをJSON形式に変換
                 const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
 
-                // URLが設定されている場合は実際の通信を行う
                 if (endpointUrl) {
+                    // Workersに対してJSONでPOSTリクエストを送信
                     const response = await fetch(endpointUrl, {
                         method: 'POST',
-                        body: formData,
                         headers: {
+                            'Content-Type': 'application/json',
                             'Accept': 'application/json'
-                        }
+                        },
+                        body: JSON.stringify(data)
                     });
                     
                     if (!response.ok) {
-                        throw new Error('ネットワークエラーが発生しました');
+                        throw new Error(`サーバーエラー: ${response.status}`);
                     }
                 } else {
                     // URLが未設定の場合は、デモとして1秒後に成功処理へ進む
                     await new Promise(resolve => setTimeout(resolve, 1000));
-                    console.log('【デモ動作】 以下のデータが spc@smileplusctg.com 宛てに送信されるイメージです:', Object.fromEntries(formData));
+                    console.log('【デモ動作】 以下のJSONデータが送信されます:', JSON.stringify(data, null, 2));
                 }
 
                 // 送信成功時：フォームを隠して完了メッセージを表示
