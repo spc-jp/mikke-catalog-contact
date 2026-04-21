@@ -39,10 +39,9 @@
     <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-hands-holding-circle text-primary text-2xl"></i>
-                <span class="font-bold text-xl tracking-tight text-gray-900">AI Biz Tools</span>
-            </div>
+            <a href="#" class="flex items-center">
+                <img src="./SPC考えるをひとりにしない.png" alt="Smile Plus Consulting" class="h-10 md:h-12 w-auto">
+            </a>
             <nav class="hidden md:flex space-x-8">
                 <a href="#about" class="text-gray-600 hover:text-primary transition font-medium">想い</a>
                 <a href="#apps" class="text-gray-600 hover:text-primary transition font-medium">60+のアプリ</a>
@@ -167,6 +166,9 @@
 
             <form id="contactForm" class="space-y-6 bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100">
                 
+                <!-- 送信先メールアドレスを処理するバックエンド等の設定用（明示的） -->
+                <input type="hidden" name="to_email" value="spc@smileplusctg.com">
+
                 <!-- Inquiry Type -->
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-3">お問い合わせ種別 <span class="text-red-500">*</span></label>
@@ -259,9 +261,8 @@
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
             <div class="mb-6 md:mb-0">
-                <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
-                    <i class="fa-solid fa-hands-holding-circle text-2xl text-blue-400"></i>
-                    <span class="font-bold text-xl tracking-tight">AI Biz Tools</span>
+                <div class="flex items-center justify-center md:justify-start mb-4">
+                    <img src="./SPC考えるをひとりにしない.png" alt="Smile Plus Consulting" class="h-12 w-auto bg-white px-3 py-1 rounded-md">
                 </div>
                 <p class="text-gray-400 text-sm">“考えるを、ひとりにしない” 伴走者</p>
             </div>
@@ -278,19 +279,60 @@
 
         const form = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
+        const submitButton = form.querySelector('button[type="submit"]');
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent actual form submission for this demo
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault(); 
             
-            // In a real application, you would send the form data to your server here
-            // using fetch() or XMLHttpRequest.
-            
-            // Hide form, show success message
-            form.style.display = 'none';
-            successMessage.classList.remove('hidden');
-            
-            // Scroll to success message
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // ボタンを送信中状態に変更して二重送信を防ぐ
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>送信中...';
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-75', 'cursor-not-allowed');
+
+            try {
+                // ==========================================
+                // 【メール送信の連携部分】
+                // ここにご利用のフォームサービス（Formspreeなど）のURLを指定します。
+                // 例: const endpointUrl = 'https://formspree.io/f/xxxxxxx';
+                // ==========================================
+                const endpointUrl = ''; // ← 発行されたURLをここに設定してください
+                
+                const formData = new FormData(form);
+
+                // URLが設定されている場合は実際の通信を行う
+                if (endpointUrl) {
+                    const response = await fetch(endpointUrl, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error('ネットワークエラーが発生しました');
+                    }
+                } else {
+                    // URLが未設定の場合は、デモとして1秒後に成功処理へ進む
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    console.log('【デモ動作】 以下のデータが spc@smileplusctg.com 宛てに送信されるイメージです:', Object.fromEntries(formData));
+                }
+
+                // 送信成功時：フォームを隠して完了メッセージを表示
+                form.style.display = 'none';
+                successMessage.classList.remove('hidden');
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            } catch (error) {
+                alert('送信に失敗しました。時間をおいて再度お試しいただくか、直接メールにてご連絡ください。');
+                console.error('Error:', error);
+            } finally {
+                // エラー時でもボタンの状態を元に戻す
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+                submitButton.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
         });
 
         function resetForm() {
