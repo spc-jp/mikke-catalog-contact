@@ -19,13 +19,12 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Sans JP', sans-serif; }
+        body { font-family: 'Noto Sans JP', sans-serif; word-break: break-word; }
         .hero-pattern {
             background-color: #f0f9ff;
             background-image: radial-gradient(#bae6fd 1px, transparent 1px);
             background-size: 20px 20px;
         }
-        /* モーダル用スタイル */
         .modal {
             display: none;
             position: fixed;
@@ -34,73 +33,74 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.6);
+            background-color: rgba(0,0,0,0.7);
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(4px);
         }
-        .modal.show {
-            display: flex;
-        }
+        .modal.show { display: flex; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <header class="bg-white shadow-sm sticky top-0 z-50 py-4 border-b border-gray-100">
+    <header class="bg-white shadow-sm sticky top-0 z-50 py-3 md:py-4 border-b border-gray-100">
         <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
             <a href="#" class="flex items-center">
-                <img src="./SPC考えるをひとりにしない.png" alt="SPC Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/400x100/1e40af/FFFFFF?text=Smile+Plus+Consulting';">
+                <img src="./SPC考えるをひとりにしない.png" alt="SPC Logo" class="h-8 md:h-10 w-auto" onerror="this.src='https://placehold.co/400x100/1e40af/FFFFFF?text=Smile+Plus+Consulting';">
             </a>
-            <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-full font-medium">お問い合わせ</a>
+            <a href="#contact" class="bg-primary text-white px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-medium">
+                お問い合わせ
+            </a>
         </div>
     </header>
 
-    <section class="hero-pattern py-16 md:py-24 border-b border-blue-100">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                “考えるを、<span class="text-primary border-b-4 border-accent">ひとりにしない</span>”
+    <section class="hero-pattern py-12 md:py-24 border-b border-blue-100 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-2xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                “考えるを、<span class="text-primary inline-block border-b-4 border-accent">ひとりにしない</span>”
             </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                経営者の「困った」を解決するパートナーとして。
+            <p class="text-base md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                経営者の「困った」を解決するパートナーとして。<br class="hidden md:block">
+                現場の声を大切にします。
             </p>
         </div>
     </section>
 
-    <section id="contact" class="py-16 bg-white flex-grow">
+    <section id="contact" class="py-12 md:py-20 bg-white flex-grow">
         <div class="max-w-3xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">お問い合わせフォーム</h2>
-                <p class="text-gray-600">以下の項目を入力し、「送信方法を確認する」ボタンを押してください。</p>
+            <div class="text-center mb-10">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">お問い合わせフォーム</h2>
+                <p class="text-sm md:text-base text-gray-600">以下の項目を入力し、送信方法を選択してください。</p>
             </div>
 
-            <form id="contactForm" class="space-y-6 bg-gray-50 p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+            <form id="contactForm" class="space-y-6 bg-gray-50 p-5 md:p-10 rounded-2xl md:rounded-3xl shadow-sm border border-gray-100">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">お名前 <span class="text-red-500">*</span></label>
-                        <input type="text" id="name" required placeholder="山田 太郎" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary outline-none transition">
+                        <input type="text" id="name" required placeholder="山田 太郎" class="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-primary transition text-base">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">メールアドレス <span class="text-red-500">*</span></label>
-                        <input type="email" id="email" required placeholder="example@gmail.com" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary outline-none transition">
+                        <input type="email" id="email" required placeholder="example@gmail.com" class="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-primary transition text-base">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2">お問い合わせ内容 <span class="text-red-500">*</span></label>
-                    <textarea id="message" rows="6" required placeholder="例：パートナーシップのご相談、アプリの活用方法について、経営改善のコンサルティング依頼、など" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary outline-none transition resize-none"></textarea>
+                    <textarea id="message" rows="5" required placeholder="例：パートナーシップのご相談、アプリの活用方法について、など" class="w-full px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-primary transition resize-none text-base"></textarea>
                 </div>
 
                 <div class="flex items-start">
                     <input id="privacy" type="checkbox" required class="mt-1 w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary cursor-pointer">
-                    <label for="privacy" class="ml-3 text-sm text-gray-600 cursor-pointer font-medium text-left">
+                    <label for="privacy" class="ml-3 text-xs md:text-sm text-gray-600 cursor-pointer font-medium text-left leading-tight">
                         個人情報の取り扱いに同意します。
                     </label>
                 </div>
 
-                <div class="text-center pt-4">
-                    <button type="submit" class="w-full md:w-auto px-12 py-4 bg-primary text-white font-bold rounded-full hover:bg-blue-900 transition shadow-md flex items-center justify-center mx-auto">
+                <div class="text-center pt-2">
+                    <button type="submit" class="w-full md:w-auto px-10 py-4 bg-primary text-white font-bold rounded-full hover:bg-blue-900 transition shadow-md flex items-center justify-center mx-auto text-lg">
                         <i class="fa-solid fa-paper-plane mr-2"></i>
-                        <span>送信方法を確認・選択する</span>
+                        <span>送信方法を選択する</span>
                     </button>
                 </div>
             </form>
@@ -109,44 +109,46 @@
 
     <!-- モーダル: 送信方法の選択 -->
     <div id="sendOptionsModal" class="modal">
-        <div class="bg-white p-8 rounded-3xl max-w-lg w-full mx-4 shadow-2xl relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+        <div class="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl max-w-lg w-[92%] mx-4 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 p-2">
                 <i class="fa-solid fa-xmark text-2xl"></i>
             </button>
             
-            <h3 class="text-xl font-bold mb-6 text-center text-gray-800">送信方法を選んでください</h3>
+            <h3 class="text-lg md:text-xl font-bold mb-6 text-center text-gray-800">送信方法を選んでください</h3>
             
             <div class="space-y-4">
                 <!-- オプション 1: メーラー -->
-                <button onclick="sendViaDefault()" class="w-full flex items-center p-4 border-2 border-gray-100 hover:border-blue-500 hover:bg-blue-50 rounded-2xl transition-all group text-left">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mr-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        <i class="fa-solid fa-envelope text-xl"></i>
+                <button onclick="sendViaDefault()" class="w-full flex items-center p-3 md:p-4 border-2 border-gray-100 hover:border-blue-500 hover:bg-blue-50 rounded-xl md:rounded-2xl transition-all group text-left">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mr-3 md:mr-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-envelope text-lg"></i>
                     </div>
-                    <div>
-                        <p class="font-bold text-gray-800">メールソフトで送る</p>
-                        <p class="text-xs text-gray-500">Outlook, iPhoneメールなどをお使いの方</p>
+                    <div class="flex-grow">
+                        <p class="font-bold text-sm md:text-base text-gray-800">メールソフトで送る</p>
+                        <p class="text-[10px] md:text-xs text-gray-500">iPhoneメール、Outlookなど</p>
                     </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300"></i>
                 </button>
 
                 <!-- オプション 2: Gmail -->
-                <button onclick="sendViaGmail()" class="w-full flex items-center p-4 border-2 border-gray-100 hover:border-red-500 hover:bg-red-50 rounded-2xl transition-all group text-left">
-                    <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center flex-shrink-0 mr-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
-                        <i class="fa-brands fa-google text-xl"></i>
+                <button onclick="sendViaGmail()" class="w-full flex items-center p-3 md:p-4 border-2 border-gray-100 hover:border-red-500 hover:bg-red-50 rounded-xl md:rounded-2xl transition-all group text-left">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center flex-shrink-0 mr-3 md:mr-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                        <i class="fa-brands fa-google text-lg"></i>
                     </div>
-                    <div>
-                        <p class="font-bold text-gray-800">Gmailで送る</p>
-                        <p class="text-xs text-gray-500">ブラウザでGmailをお使いの方</p>
+                    <div class="flex-grow">
+                        <p class="font-bold text-sm md:text-base text-gray-800">Gmailで送る</p>
+                        <p class="text-[10px] md:text-xs text-gray-500">WebブラウザのGmailを使う方</p>
                     </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300"></i>
                 </button>
 
                 <!-- オプション 3: コピー -->
                 <div class="border-t border-gray-100 my-4 pt-4">
-                    <p class="text-sm font-bold text-gray-600 mb-2 pl-1">うまくいかない場合は...</p>
-                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                        <p class="text-xs text-gray-500 mb-2">本文をコピーして、spc@smileplusctg.com まで直接メールをお送りください。</p>
-                        <textarea id="manualBody" rows="4" readonly class="w-full bg-white border border-gray-200 rounded p-2 text-xs mb-2 focus:ring-2 focus:ring-blue-500 outline-none" onClick="this.select()"></textarea>
-                        <button onclick="copyToClipboard()" id="copyBtn" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 rounded-lg text-sm transition-colors">
-                            本文をコピーする
+                    <p class="text-xs md:text-sm font-bold text-gray-600 mb-2">手動で送る場合：</p>
+                    <div class="bg-gray-50 p-3 md:p-4 rounded-xl border border-gray-200">
+                        <p class="text-[10px] md:text-xs text-gray-500 mb-2">本文をコピーして spc@smileplusctg.com までお送りください。</p>
+                        <textarea id="manualBody" rows="4" readonly class="w-full bg-white border border-gray-200 rounded p-2 text-[10px] md:text-xs mb-3 outline-none focus:ring-2 focus:ring-blue-500" onClick="this.select()"></textarea>
+                        <button onclick="copyToClipboard()" id="copyBtn" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-3 rounded-lg text-sm transition-colors flex items-center justify-center">
+                            <i class="fa-solid fa-copy mr-2"></i>本文をコピーする
                         </button>
                     </div>
                 </div>
@@ -154,12 +156,11 @@
         </div>
     </div>
 
-    <footer class="bg-gray-900 text-white py-12 text-center">
-        <p class="text-gray-400 text-sm">© 2024 Smile Plus Consulting. All rights reserved.</p>
+    <footer class="bg-gray-900 text-white py-10 text-center px-4">
+        <p class="text-gray-400 text-xs md:text-sm">© 2024 Smile Plus Consulting. All rights reserved.</p>
     </footer>
 
     <script>
-        // 状態保持用
         let emailData = {
             to: "spc@smileplusctg.com",
             subject: "【お問い合わせ】Smile Plus Consulting サイトより",
@@ -169,76 +170,33 @@
         const form = document.getElementById('contactForm');
         const modal = document.getElementById('sendOptionsModal');
 
-        // フォーム送信時（モーダルを開く）
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const message = document.getElementById('message').value;
 
-            emailData.body = `【お問い合わせ内容】
-
-■お名前：
-${name}
-
-■返信先メールアドレス：
-${email}
-
-■メッセージ：
-${message}
-
---------------------------------------------------
-※このメールを送信して、お問い合わせを完了してください。`;
-
-            // モーダルのテキストエリアにセット
+            emailData.body = `【お問い合わせ内容】\n\n■お名前：\n${name}\n\n■返信先メールアドレス：\n${email}\n\n■メッセージ：\n${message}\n\n--------------------------------------------------\n※このメールを送信してお問い合わせを完了してください。`;
             document.getElementById('manualBody').value = emailData.body;
-            
-            // モーダル表示
             modal.classList.add('show');
         });
 
-        // モーダルを閉じる
-        function closeModal() {
-            modal.classList.remove('show');
-        }
-
-        // 1. 標準メーラーで送信
-        function sendViaDefault() {
-            const mailtoUrl = `mailto:${emailData.to}?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;
-            window.location.href = mailtoUrl;
-        }
-
-        // 2. Gmailで送信
-        function sendViaGmail() {
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailData.to}&su=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;
-            window.open(gmailUrl, '_blank');
-        }
-
-        // 3. クリップボードにコピー
+        function closeModal() { modal.classList.remove('show'); }
+        function sendViaDefault() { window.location.href = `mailto:${emailData.to}?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`; }
+        function sendViaGmail() { window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${emailData.to}&su=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`, '_blank'); }
         function copyToClipboard() {
             const copyText = document.getElementById("manualBody");
             copyText.select();
-            copyText.setSelectionRange(0, 99999);
-
             const showSuccess = () => {
                 const btn = document.getElementById('copyBtn');
-                btn.textContent = 'コピーしました！';
+                btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i>コピーしました！';
                 btn.classList.add('bg-green-500', 'text-white');
-                setTimeout(() => {
-                    btn.textContent = '本文をコピーする';
-                    btn.classList.remove('bg-green-500', 'text-white');
+                setTimeout(() => { 
+                    btn.innerHTML = '<i class="fa-solid fa-copy mr-2"></i>本文をコピーする'; 
+                    btn.classList.remove('bg-green-500', 'text-white'); 
                 }, 2000);
             };
-
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(copyText.value)
-                    .then(showSuccess)
-                    .catch(() => { document.execCommand('copy'); showSuccess(); });
-            } else {
-                document.execCommand('copy');
-                showSuccess();
-            }
+            if (navigator.clipboard) { navigator.clipboard.writeText(copyText.value).then(showSuccess); } else { document.execCommand('copy'); showSuccess(); }
         }
     </script>
 </body>
