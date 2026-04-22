@@ -5,21 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせ | Smile Plus Consulting</title>
     <link rel="icon" href="https://spc-jp.github.io/mikke-catalog-contact/favicon.png" type="image/png">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1e40af',
-                        secondary: '#3b82f6',
-                        accent: '#f59e0b',
-                    },
-                    fontFamily: {
-                        sans: ['"Noto Sans JP"', 'sans-serif'],
-                    }
+                    colors: { primary: '#1e40af', secondary: '#3b82f6', accent: '#f59e0b' },
+                    fontFamily: { sans: ['"Noto Sans JP"', 'sans-serif'] }
                 }
             }
         }
@@ -36,19 +29,15 @@
 </head>
 <body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50 py-4">
         <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
             <a href="#" class="flex items-center">
                 <img src="./SPC考えるをひとりにしない.png" alt="SPC Logo" class="h-10 w-auto" onerror="this.src='https://placehold.co/400x100/1e40af/FFFFFF?text=Smile+Plus+Consulting';">
             </a>
-            <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-blue-900 transition shadow-sm">
-                お問い合わせ
-            </a>
+            <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-full font-medium">お問い合わせ</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero-pattern py-16 md:py-24 border-b border-blue-100">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -66,64 +55,60 @@
         </div>
     </section>
 
-    <!-- Contact Form Section -->
     <section id="contact" class="py-16 bg-white flex-grow">
         <div class="max-w-3xl mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">お問い合わせフォーム</h2>
-                <p class="text-gray-600">パートナーシップのご相談、ツールの導入などはこちらから。</p>
+                <p class="text-gray-600">お気軽にご連絡ください。通常2営業日以内に回答いたします。</p>
             </div>
 
             <form id="contactForm" class="space-y-6 bg-gray-50 p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">お名前 <span class="text-red-500">*</span></label>
-                        <input type="text" name="name" required placeholder="山田 太郎" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition">
+                        <input type="text" name="name" required placeholder="山田 太郎" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary outline-none transition">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">メールアドレス <span class="text-red-500">*</span></label>
-                        <input type="email" name="email" required placeholder="example@gmail.com" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition">
+                        <input type="email" name="email" required placeholder="example@gmail.com" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary outline-none transition">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2">お問い合わせ内容 <span class="text-red-500">*</span></label>
-                    <textarea name="message" rows="6" required placeholder="ご相談内容をご自由にご記入ください。" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition resize-none"></textarea>
+                    <textarea name="message" rows="6" required placeholder="例：パートナーシップのご相談、アプリの活用方法について、経営改善のコンサルティング依頼、など" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary outline-none transition resize-none"></textarea>
                 </div>
 
                 <div class="flex items-start">
                     <input id="privacy" type="checkbox" required class="mt-1 w-5 h-5 text-primary rounded border-gray-300 focus:ring-primary cursor-pointer">
-                    <label for="privacy" class="ml-3 text-sm text-gray-600 cursor-pointer font-medium">
+                    <label for="privacy" class="ml-3 text-sm text-gray-600 cursor-pointer font-medium text-left">
                         個人情報の取り扱いに同意します。
                     </label>
                 </div>
 
                 <div class="text-center pt-4">
-                    <button type="submit" id="submitBtn" class="w-full md:w-auto px-12 py-4 bg-primary text-white font-bold rounded-full hover:bg-blue-900 focus:outline-none focus:ring-4 focus:ring-blue-200 transition shadow-md flex items-center justify-center mx-auto">
-                        <i class="fa-solid fa-paper-plane mr-2"></i>
-                        <span>メッセージを送信する</span>
+                    <button type="submit" id="submitBtn" class="w-full md:w-auto px-12 py-4 bg-primary text-white font-bold rounded-full hover:bg-blue-900 transition shadow-md">
+                        送信する
                     </button>
                 </div>
             </form>
 
-            <!-- Success Message -->
             <div id="successMessage" class="hidden mt-8 p-10 bg-green-50 border border-green-200 rounded-3xl text-center shadow-sm">
-                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
-                    <i class="fa-solid fa-check text-4xl"></i>
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
+                    <i class="fa-solid fa-check text-3xl"></i>
                 </div>
                 <h3 class="text-2xl font-bold text-green-800 mb-3">送信が完了しました</h3>
                 <p class="text-green-700 leading-relaxed font-bold">
-                    お問い合わせありがとうございます。<br>
-                    ご入力いただいたメールアドレス宛に控えをお送りしました。
+                    お問い合わせありがとうございます。内容を確認の上、<br class="hidden md:block">
+                    担当者より yymmatsu@gmail.com 宛てにご連絡させていただきます。
                 </p>
-                <button onclick="location.reload()" class="mt-8 px-8 py-2 bg-white border border-green-300 text-green-700 rounded-full hover:bg-green-50 transition font-bold shadow-sm">
+                <button onclick="location.reload()" class="mt-8 px-8 py-2 bg-white border border-green-300 text-green-700 rounded-full font-bold">
                     トップに戻る
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12 text-center border-t border-gray-800">
         <p class="text-gray-400 text-sm">© 2024 Smile Plus Consulting. All rights reserved.</p>
     </footer>
@@ -135,14 +120,10 @@
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // UI状態の更新
-            const originalBtnText = submitBtn.innerHTML;
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i>送信中...';
+            submitBtn.innerHTML = '送信中...';
 
             try {
-                // Cloudflare WorkerのURL
                 const endpointUrl = 'https://mikke-catalog-contact.yymmatsu.workers.dev';
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
@@ -154,21 +135,16 @@
                 });
                 
                 const result = await response.json();
+                if (!response.ok) throw new Error(result.error || `エラー: ${response.status}`);
 
-                if (!response.ok) {
-                    throw new Error(result.error || `エラーコード: ${response.status}`);
-                }
-
-                // 成功時の処理
                 form.style.display = 'none';
                 successMessage.classList.remove('hidden');
                 successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
             } catch (error) {
-                alert(`【送信エラー】\n${error.message}\n\n※Resendの制限により、現在は yymmatsu@gmail.com 宛にのみ送信可能です。`);
+                alert(`送信失敗: ${error.message}`);
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = originalBtnText;
+                submitBtn.innerHTML = '送信する';
             }
         });
     </script>
